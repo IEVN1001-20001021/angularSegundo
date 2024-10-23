@@ -1,5 +1,4 @@
-<ul>
-    <li *ngfor="let alum of messageService.alumnos">
-        {{alum.name}}
-    </li>
-</ul>
+<tr *ngFor="let item of messageService.alumnos">
+    <td>{{item}}</td>
+</tr>
+{{messageService.alumnos}}
