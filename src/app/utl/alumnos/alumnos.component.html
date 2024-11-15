@@ -1,127 +1,124 @@
-<div class="container">
-  <div class="row">
-    <div class="card">
-      <div class="card-header">
-        <button
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          [routerLink]="['/humani/agregar']"
+<div class="container mx-auto p-4">
+  <div class="bg-white shadow-lg rounded-lg">
+    <div
+      class="bg-blue-700 text-white p-4 rounded-t-lg flex items-center justify-between"
+    >
+      <button
+        class="bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center"
+        [routerLink]="['/humani/agregar']"
+      >
+        <svg
+          class="w-6 h-6 text-white mr-2"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
         >
-          <svg
-            class="w-6 h-6 text-gray-800 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 9V6c0-.55228.44772-1 1-1h16c.5523 0 1 .44771 1 1v3M3 9v9c0 .5523.44772 1 1 1h16c.5523 0 1-.4477 1-1V9M3 9h18M8 9V5m4 4V5m4 4V5m-6 9h2m0 0h2m-2 0v-2m0 2v2"
-            />
-          </svg>
-
-          Agregar
-        </button>
-        Lista Alumnos IRIC
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 9V6c0-.55228.44772-1 1-1h16c.5523 0 1 .44771 1 1v3M3 9v9c0 .5523.44772 1 1 1h16c.5523 0 1-.4477 1-1V9M3 9h18M8 9V5m4 4V5m4 4V5m-6 9h2m0 0h2m-2 0v-2m0 2v2"
+          />
+        </svg>
+        Agregar
+      </button>
+      <span class="text-lg font-semibold">Lista Alumnos IRIC</span>
+    </div>
+    <div class="p-4">
+      <div class="flex items-center mb-4">
+        <div class="w-1/5 font-semibold">Filtrar por:</div>
+        <div class="w-2/5">
+          <input
+            [(ngModel)]="listFilter"
+            class="border border-gray-300 rounded-lg p-2 w-full"
+            name="filter"
+            type="text"
+          />
+        </div>
       </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-2">Filtrar por:</div>
-          <div class="col-md-4">
-            <input
-              [(ngModel)]="listFilter"
-              class="form-control"
-              name="filter"
-              type="text"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <h3>Filtro:{{ listFilter }}</h3>
-          </div>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped" *ngIf="alumnosIric.length">
-            <thead class="thead-dark">
-              <tr>
-                <th>Matricula</th>
-                <th>Nombre</th>
-                <th>Apaterno</th>
-                <th>Amaterno</th>
-                <th>Correo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
-                  let alumno of dataSource.alumnos | alumnoFilter : listFilter
-                "
-              >
-                <td>{{ alumno.matricula }}</td>
-                <td>{{ alumno.nombre | uppercase }}</td>
-                <td>{{ alumno.apaterno }}</td>
-                <td>{{ alumno.amaterno }}</td>
-                <td>{{ alumno.correo }}</td>
-
-                <td>
-                  <button
-                    class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
-                    [routerLink]="['/humani/editar', alumno.matricula]"
+      <div class="mb-4">
+        <h3 class="text-lg font-medium">Filtro: {{ listFilter }}</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table
+          class="min-w-full bg-white border border-gray-300 rounded-lg"
+          *ngIf="alumnosIric.length"
+        >
+          <thead class="bg-gray-800 text-white">
+            <tr>
+              <th class="p-3 text-left">Matricula</th>
+              <th class="p-3 text-left">Nombre</th>
+              <th class="p-3 text-left">Apaterno</th>
+              <th class="p-3 text-left">Amaterno</th>
+              <th class="p-3 text-left">Correo</th>
+              <th class="p-3 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let alumno of dataSource.alumnos | alumnoFilter : listFilter
+              "
+              class="border-b border-gray-300"
+            >
+              <td class="p-3">{{ alumno.matricula }}</td>
+              <td class="p-3">{{ alumno.nombre | uppercase }}</td>
+              <td class="p-3">{{ alumno.apaterno }}</td>
+              <td class="p-3">{{ alumno.amaterno }}</td>
+              <td class="p-3">{{ alumno.correo }}</td>
+              <td class="p-3 flex space-x-2">
+                <button
+                  class="bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 text-white font-medium rounded-lg text-sm px-4 py-2 flex items-center"
+                  [routerLink]="['/humani/editar', alumno.matricula]"
+                >
+                  <svg
+                    class="w-5 h-5 text-white mr-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 18 20"
                   >
-                    <svg
-                      class="w-6 h-6 text-gray-800 dark:text-white"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 20"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
-                      />
-                    </svg>
-
-                    Editar
-                  </button>
-                </td>
-                <td>
-                  <button
-                    class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                    [routerLink]="['/humani/eliminar', alumno.matricula]"
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+                    />
+                  </svg>
+                  Editar
+                </button>
+                <button
+                  class="bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 text-white font-medium rounded-lg text-sm px-4 py-2 flex items-center"
+                  [routerLink]="['/humani/eliminar', alumno.matricula]"
+                >
+                  <svg
+                    class="w-5 h-5 text-white mr-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
                   >
-                    <svg
-                      class="w-6 h-6 text-gray-800 dark:text-white"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 15v3c0 .5523.44772 1 1 1h16c.5523 0 1-.4477 1-1v-3M3 15V6c0-.55228.44772-1 1-1h16c.5523 0 1 .44772 1 1v9M3 15h18M8 15v4m4-4v4m4-4v4m-5.5061-7.4939L12 10m0 0 1.5061-1.50614M12 10l1.5061 1.5061M12 10l-1.5061-1.50614"
-                      />
-                    </svg>
-
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 15v3c0 .5523.44772 1 1 1h16c.5523 0 1-.4477 1-1v-3M3 15V6c0-.55228.44772-1 1-1h16c.5523 0 1 .44772 1 1v9M3 15h18M8 15v4m4-4v4m4-4v4m-5.5061-7.4939L12 10m0 0 1.5061-1.50614M12 10l1.5061 1.5061M12 10l-1.5061-1.50614"
+                    />
+                  </svg>
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

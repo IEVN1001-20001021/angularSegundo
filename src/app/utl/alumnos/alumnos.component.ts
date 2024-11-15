@@ -28,27 +28,12 @@ export default class AlumnosComponent implements OnInit {
 
   alumnosIric: Alumnosutl[] = [
     {
-      matricula: 1234,
-      nombre: 'pedro',
-      apaterno: 'lopez',
-      amaterno: 'muñoz',
-      correo: 'pedro@gmail.com',
-    },
-    {
-      matricula: 772,
-      nombre: 'Paulina',
-      apaterno: 'lopez',
-      amaterno: 'muñoz',
-      correo: 'paulina@gmail.com',
-    },
-
-    {
-      matricula: 22,
-      nombre: 'Dario',
-      apaterno: 'lopez',
-      amaterno: 'muñoz',
-      correo: 'dario@gmail.com',
-    },
+      matricula: 0,
+      nombre: '',
+      apaterno: '',
+      amaterno: '',
+      correo: '',
+    }
   ];
 
   onCalificaClick(message: string) {
